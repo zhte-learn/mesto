@@ -1,15 +1,15 @@
-.btn_action_edit {
+.button_action_edit {
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
   box-sizing: border-box;
-  background-image: url(../../../../images/icon-edit.svg);
+  background-image: url(../../../images/icon-edit.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 760px) {
-  .btn_action_edit {
+  .button_action_edit {
     width: 18px;
     height: 18px;
   }   

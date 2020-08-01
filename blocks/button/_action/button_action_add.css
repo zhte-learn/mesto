@@ -1,16 +1,16 @@
-.btn_action_add {
+.button_action_add {
   width: 150px;
   height: 50px;
   border: 2px solid #FFFFFF;
   box-sizing: border-box;
   border-radius: 2px;
-  background-image: url(../../../../images/icon-plus.svg);
+  background-image: url(../../../images/icon-plus.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 515px) {
-  .btn_action_add {
+  .button_action_add {
     width: 100%;
   }   
 }

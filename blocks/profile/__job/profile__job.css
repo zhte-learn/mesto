@@ -1,6 +1,9 @@
 .profile__job {
   margin: 0;
   max-width: 295px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   color: #fff;
   font-style: normal;
   font-weight: 300;

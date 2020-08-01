@@ -1,6 +1,7 @@
 .form-edit__save {
   width: 100%;
-  padding: 14px 0 19px 0;
+  min-height: 50px;
+  padding: 0;
   background-color: #000;
   border-radius: 2px;
   font-style: normal;
@@ -9,11 +10,8 @@
   line-height: 22px;
   text-align: center;
   color: #fff;
-
-  
   border: none;
-  cursor: pointer;
-  
+  cursor: pointer;  
 }
 
 .form-edit__save:hover,

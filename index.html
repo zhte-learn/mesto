@@ -7,127 +7,136 @@
   <link href="./pages/index.css" rel="stylesheet">
 </head>
 
-<body>
-  <div class="page">
-    <div class="page__container">
-      <header class="header">
-        <a class="header__link" href="#">
-          <img class="logo" src="./images/logo.svg" alt="Логотип Mesto">
-        </a>
-      </header>
+<body class="page">
+  <header class="header">
+    <div class="header__container">
+      <a class="header__link" href="#">
+        <img class="logo" src="./images/logo.svg" alt="Логотип Mesto">
+      </a>
+    </div>
+  </header>
 
-      <main class="content">
-        <section class="profile">
-          <div class="profile__content"> 
-            <img class="profile__image" src="./images/profile-image.jpg" alt="Изображение автора сайта">
-
-            <div class="profile__info">                 
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <!--это не h1 по смыслу, но использование скрытых элементов не допускается-->
-              <button class="btn btn_action_edit"></button>            
-              <p class="profile__job">Исследователь океана</p>
-            </div>
+  <div class="page__container">
+    <main class="content">
+      <section class="profile">
+        <div class="profile__content"> 
+          <div class="profile__image" 
+            style ="background-image: url(./images/profile-image.jpg)">
           </div>
+          <div class="profile__info">                 
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <!--это не h1 по смыслу, но использование скрытых элементов не допускается-->
+            <button class="button button_action_edit" type="button" 
+              aria-label="Открыть форму редактирования"></button>            
+            <p class="profile__job">Исследователь океана</p>
+          </div>
+        </div>
 
-          <button class="btn btn_action_add"></button>
-        </section>
+        <button class="button button_action_add" type="button" aria-label="Добавить информацию"></button>
+      </section>
 
-        <section class="cards-grid">
-          <ul class="cards-grid__list">
-            <li>
-              <figure class="cards-grid__figure">             
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Karachaevsk.jpg" 
-                  alt="Изображение города Карачаевск">  
-                </div>                  
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Карачаевск</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>  
-            </li>
-            <li>
-              <figure class="cards-grid__figure">
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Elbrus.jpg" 
-                  alt="Изображение горы Эльбрус"> 
-                </div>                    
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Гора Эльбрус</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>  
-            </li>
-            <li>
-              <figure class="cards-grid__figure">
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Dombai.jpg" 
-                  alt="Изображение гор Домбай">
-                </div>              
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Домбай</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>  
-            </li>
-            <li>
-              <figure class="cards-grid__figure">
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Elbrus.jpg" 
-                  alt="Изображение горы Эльбрус"> 
-                </div>                    
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Гора Эльбрус</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>  
-            </li>
-            <li>
-              <figure class="cards-grid__figure">
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Dombai.jpg" 
-                  alt="Изображение гор Домбай">
-                </div>              
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Домбай</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards-grid__figure">             
-                <div class="image-wrapper">
-                  <img class="cards-grid__image" src="./images/card-Karachaevsk.jpg" 
-                  alt="Изображение города Карачаевск">  
-                </div>                  
-                <figcaption class="cards-grid__caption">
-                  <h3 class="cards-grid__caption-title">Карачаево-Черкессия</h3>
-                  <button class="btn btn_action_like"></button>
-                </figcaption>
-              </figure>
-            </li>
-          </ul>
-        </section>      
+      <section class="cards-grid">
+        <ul class="cards-grid__list">
+          <li>
+            <figure class="cards-grid__figure">             
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image" 
+                  style="background-image: url(./images/card-Karachaevsk.jpg)">
+                </div>  
+              </div>                  
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Карачаевск</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>  
+          </li>
+          <li>
+            <figure class="cards-grid__figure">
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image" 
+                  style="background-image: url(./images/card-Elbrus.jpg)">
+                </div>
+              </div>                   
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Гора Эльбрус</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>  
+          </li>
+          <li>
+            <figure class="cards-grid__figure">
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image"
+                  style="background-image: url(./images/card-Dombai.jpg)">
+                </div>
+              </div>              
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Домбай</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>  
+          </li>
+          <li>
+            <figure class="cards-grid__figure">
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image"
+                  style="background-image: url(./images/card-Elbrus.jpg)">
+                </div>
+              </div>                    
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Гора Эльбрус</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>  
+          </li>
+          <li>
+            <figure class="cards-grid__figure">
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image"
+                  style="background-image: url(./images/card-Dombai.jpg)">
+                </div>
+              </div>              
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Домбай</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards-grid__figure">             
+              <div class="cards-grid__image-wrapper">
+                <div class="cards-grid__image"
+                  style="background-image: url(./images/card-Karachaevsk.jpg)">
+                </div>
+              </div>                  
+              <figcaption class="cards-grid__caption">
+                <h2 class="cards-grid__caption-title">Карачаево-Черкессия</h2>
+                <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </section>      
+    </main>
 
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
 
-      <div class="popup">
-        <div class="popup__container">
-          <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
 
-          <form class="form-edit">            
-            <h2 class="form-edit__title">Редактировать профиль</h2>
-            <input type="text" class="form-edit__text form-edit__text_name">
-            <input type="text" class="form-edit__text form-edit__text_job">
-            <button class="form-edit__save" type="submit">Сохранить</button>                       
-          </form>   
-        </div>                                              
-      </div><!--popup-->
+        <form class="form-edit" method="POST" name="editForm">            
+          <h3 class="form-edit__title">Редактировать профиль</h3>
+          <input type="text" class="form-edit__input form-edit__input_text_name">
+          <input type="text" class="form-edit__input form-edit__input_text_job">
+          <button class="form-edit__save" type="submit">Сохранить</button>                       
+        </form>   
+      </div>                                              
+    </div><!--popup-->
 
-    </div><!--page__container-->
-  </div><!--page-->
+  </div><!--page__container-->
 
-  <script src="./js/script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>

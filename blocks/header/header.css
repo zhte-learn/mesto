@@ -1,10 +1,25 @@
 .header {
+  max-width: 882px;
+  margin: 0 auto;
   padding: 45px 0 40px 0;
   border-bottom: 1px solid rgba(84, 84, 84, .8);
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 990px) {
   .header {
+    max-width: 90%;
+  }   
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    max-width: 70%;
     padding: 28px 0 31px 0;
+  }   
+}
+
+@media screen and (max-width: 515px) {
+  .header {
+    max-width: 100%;
   }   
 }

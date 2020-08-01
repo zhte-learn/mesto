@@ -1,4 +1,4 @@
-.btn {
+.button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -6,12 +6,12 @@
   padding: 0;
 }
 
-.btn:hover,
-.btn:focus {
+.button:hover,
+.button:focus {
   opacity: .6;
 }
 
-.btn:active {
+.button:active {
   transform: translateY(1px);
   filter: saturate(150%);
 }

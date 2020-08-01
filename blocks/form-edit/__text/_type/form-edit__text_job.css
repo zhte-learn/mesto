@@ -1,9 +1,0 @@
-.form-edit__text_job {
-  margin: 30px 0 48px 0;
-}
-
-@media screen and (max-width: 450px) {
-  .form-edit__text_job {
-    margin: 25px 0 38px 0;
-  }
-}

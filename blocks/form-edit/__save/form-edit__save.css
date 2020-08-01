@@ -1,0 +1,28 @@
+.form-edit__save {
+  width: 100%;
+  padding: 14px 0 19px 0;
+  background-color: #000;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
+
+  
+  border: none;
+  cursor: pointer;
+  
+}
+
+.form-edit__save:hover,
+.form-edit__save:focus {
+  opacity: .6;
+}
+
+.form-edit__save:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+  outline: none;
+}

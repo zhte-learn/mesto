@@ -1,7 +1,8 @@
 .button_action_edit {
   width: 24px;
   height: 24px;
-  border: 1px solid #FFFFFF;
+  margin: 16px 0 0 25px;
+  border: 1px solid #fff;
   box-sizing: border-box;
   background-image: url(../../../images/icon-edit.svg);
   background-position: center;
@@ -12,5 +13,5 @@
   .button_action_edit {
     width: 18px;
     height: 18px;
-  }   
+    margin: 6px 0 0 14px;
 }

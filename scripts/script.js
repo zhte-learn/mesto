@@ -23,7 +23,7 @@ function formSubmitHandler(event) {
   currentPageName.textContent = inputName.value;
   currentPageJob.textContent = inputJob.value;
 
-  popupToggle(event);
+  popup.classList.remove('popup_opened');
 }
 
 formEdit.addEventListener('submit', formSubmitHandler);

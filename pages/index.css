@@ -12,13 +12,15 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__job/profile__job.css);
-@import url(../blocks/cards-grid/cards-grid.css);
-@import url(../blocks/cards-grid/__list/cards-grid__list.css);
 @import url(../blocks/button/button.css);
 @import url(../blocks/button/_action/button_action_edit.css);
 @import url(../blocks/button/_action/button_action_add.css);
 @import url(../blocks/button/_action/button_action_like.css);
+@import url(../blocks/button/_action/button_action_like_active.css);
+@import url(../blocks/button/_action/button_action_remove.css);
+@import url(../blocks/cards-grid/cards-grid.css);
 @import url(../blocks/cards-grid/__list/cards-grid__list.css);
+@import url(../blocks/cards-grid/__item/cards-grid__item.css);
 @import url(../blocks/cards-grid/__figure/cards-grid__figure.css);
 @import url(../blocks/cards-grid/__image-wrapper/cards-grid__image-wrapper.css);
 @import url(../blocks/cards-grid/__image/cards-grid__image.css);

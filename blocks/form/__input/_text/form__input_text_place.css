@@ -1,9 +1,9 @@
-.form-edit__input_text_name {
+.form__input_text_place {
   margin-top: 48px;
 }
 
 @media screen and (max-width: 450px) {
-  .form-edit__input_text_name {
+  .form__input_text_place {
     margin-top: 38px;
   }
 }

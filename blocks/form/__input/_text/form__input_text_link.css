@@ -1,9 +1,9 @@
-.form-edit__input_text_job {
+.form__input_text_link {
   margin: 25px 0 42px 0;
 }
 
 @media screen and (max-width: 450px) {
-  .form-edit__input_text_job {
+  .form__input_text_link {
     margin: 25px 0 38px 0;
   }
 }

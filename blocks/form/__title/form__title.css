@@ -1,4 +1,4 @@
-.form-edit__title {
+.form__title {
   margin: 0;
   font-style: normal;
   font-weight: 900;
@@ -8,13 +8,13 @@
 }
 
 @media screen and (max-width: 600px) {
-  .form-edit__title {
+  .form__title {
     text-align: center;
   }   
 }
 
 @media screen and (max-width: 450px) {
-  .form-edit__title {
+  .form__title {
     font-size: 20px;
   }   
 }

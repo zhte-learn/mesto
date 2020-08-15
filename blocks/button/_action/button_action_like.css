@@ -4,4 +4,5 @@
   background-image: url(../../../images/icon-heart.svg);
   background-position: top;
   background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
 }

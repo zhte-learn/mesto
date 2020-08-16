@@ -51,8 +51,8 @@
 
         <form class="form form_edit" method="POST" name="editForm">            
           <h3 class="form__title">Редактировать профиль</h3>
-          <input type="text" class="form__input form__input_text_name">
-          <input type="text" class="form__input form__input_text_job">
+          <input type="text" class="form__input form__input_text_name" required>
+          <input type="text" class="form__input form__input_text_job" required>
           <button class="form__button" type="submit">Сохранить</button>                       
         </form>   
       </div>                                              
@@ -65,9 +65,9 @@
         <form class="form form_add" method="POST" name="addForm">            
           <h3 class="form__title">Новое место</h3>
           <input type="text" class="form__input form__input_text_place" 
-            placeholder="Название">
+            placeholder="Название" required>
           <input type="text" class="form__input form__input_text_link" 
-            placeholder="Ссылка на картинку">
+            placeholder="Ссылка на картинку" required>
           <button class="form__button" type="submit">Создать</button>                       
         </form>   
       </div>                                              

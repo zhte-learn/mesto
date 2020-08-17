@@ -29,18 +29,29 @@ const closePopup = function(popup) {
   popup.classList.remove('popup_opened');
 }
 
+const openPopupEdit = function(event) {
+  if(!popupEdit.classList.contains('popup_opened')) {
+    inputValueName.value = currentPageName.textContent;
+    inputValueJob.value = currentPageJob.textContent;
+  }
+  openPopup(popupEdit);
+}
+
+const openPopupAdd = function(event) {
+  if(!popupAdd.classList.contains('popup_opened')) {  
+    inputValuePlace.value = '';
+    inputValueLink.value = '';
+  }
+  openPopup(popupAdd);
+}
+
+buttonEdit.addEventListener('click', openPopupEdit);
+buttonAdd.addEventListener('click', openPopupAdd);
+
 document.addEventListener('click', function(event) {
   const target = event.target;
 
-  if(target === buttonEdit) {
-    inputValueName.value = currentPageName.textContent;
-    inputValueJob.value = currentPageJob.textContent; 
-    openPopup(popupEdit); 
-  } else if(target === buttonAdd) {
-    inputValuePlace.value = '';
-    inputValueLink.value = '';
-    openPopup(popupAdd);
-  } else if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
+  if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
     const popup = target.closest('.popup');
     closePopup(popup);
   }
@@ -64,7 +75,6 @@ const formAddSubmitHandler = function(event) {
   const newItem = {name: inputValuePlace.value, link: inputValueLink.value};
 
   addCardToPage(newItem);
-
   closePopup(popupAdd);
 }
 
@@ -74,10 +84,12 @@ formAdd.addEventListener('submit', formAddSubmitHandler);
 const createCard = function(item) {
   const cardTemplate = document.querySelector('#card').content;
   const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector('.cards-grid__image');
+  const cardTitle = cardElement.querySelector('.cards-grid__caption-title');
 
-  cardElement.querySelector('.cards-grid__image').src = item.link;
-  cardElement.querySelector('.cards-grid__image').alt = 'Изображение места';
-  cardElement.querySelector('.cards-grid__caption-title').textContent = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = 'Изображение места';
+  cardTitle.textContent = item.name;
 
   cardElement.querySelector('.button_action_like').addEventListener('click', function (event) {
     const likeButtonClicked = event.target;

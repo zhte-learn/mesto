@@ -63,7 +63,7 @@ const formAddSubmitHandler = function(event) {
 
   const newItem = {name: inputValuePlace.value, link: inputValueLink.value};
 
-  addCardToPage(cardsContainer, newItem);
+  addCardToPage(newItem);
 
   closePopup(popupAdd);
 }

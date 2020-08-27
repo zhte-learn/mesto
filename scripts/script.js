@@ -1,4 +1,5 @@
 //открытие попапа Edit
+const popups = document.querySelectorAll('.popup');
 const buttonEdit = document.querySelector('.button_action_edit');
 const popupEdit = document.querySelector('.popup_edit');
 
@@ -22,7 +23,9 @@ const cardsContainer = document.querySelector('.cards-grid__list');
 
 //открытие и закрытие popups
 const openPopup = function(popup) {
+  const popupForm = popup.querySelector('.form');
   popup.classList.add('popup_opened');
+  clearValidate(popupForm);
 }
 
 const closePopup = function(popup) {
@@ -55,6 +58,16 @@ document.addEventListener('click', function(event) {
     const popup = target.closest('.popup');
     closePopup(popup);
   }
+})
+
+document.addEventListener('keydown', function(event) {
+  if(event.key === 'Escape') {
+    popups.forEach(function(popup) {
+      if(popup.classList.contains('popup_opened')) {
+        closePopup(popup);
+      }
+    })
+  } 
 })
 
 //обработка форм редактирования и добавления карточек

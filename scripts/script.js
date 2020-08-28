@@ -22,14 +22,40 @@ const popupPicCaption = popupPic.querySelector('.figure-pic__figcaption');
 const cardsContainer = document.querySelector('.cards-grid__list');
 
 //открытие и закрытие popups
+const keyboardListenter = function (event) {
+  if(event.key === 'Escape') {
+    popups.forEach(function(popup) {
+      if(popup.classList.contains('popup_opened')) {
+        closePopup(popup);
+      };
+    });   
+  };
+}
+
+const popupClickListener = function (event) {
+  const target = event.target;
+
+  if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
+    const popup = target.closest('.popup');
+    closePopup(popup);
+  }
+}
+
 const openPopup = function(popup) {
   const popupForm = popup.querySelector('.form');
   popup.classList.add('popup_opened');
-  clearValidate(popupForm);
+
+  if(popupForm === popupEdit || popupForm === popupAdd) {
+    clearValidate(popupForm, formParameters);
+  }
+  document.addEventListener('click', popupClickListener);
+  window.addEventListener('keydown', keyboardListenter);
 }
 
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('click', popupClickListener);
+  window.removeEventListener('keydown', keyboardListenter);
 }
 
 const openPopupEdit = function(event) {
@@ -50,25 +76,6 @@ const openPopupAdd = function(event) {
 
 buttonEdit.addEventListener('click', openPopupEdit);
 buttonAdd.addEventListener('click', openPopupAdd);
-
-document.addEventListener('click', function(event) {
-  const target = event.target;
-
-  if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
-    const popup = target.closest('.popup');
-    closePopup(popup);
-  }
-})
-
-document.addEventListener('keydown', function(event) {
-  if(event.key === 'Escape') {
-    popups.forEach(function(popup) {
-      if(popup.classList.contains('popup_opened')) {
-        closePopup(popup);
-      }
-    })
-  } 
-})
 
 //обработка форм редактирования и добавления карточек
 const formEditSubmitHandler = function(event) {

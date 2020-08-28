@@ -1,22 +1,22 @@
-const showInputError = function (formElement, inputElement, errorMessage) {
+const showInputError = function (formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add('form__input_type_error');
+  inputElement.classList.add(params.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
+  errorElement.classList.add(params.errorClass);
 };
 
-const hideInputError = function(formElement, inputElement) {
+const hideInputError = function(formElement, inputElement, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove('form__input_type_error');
-  errorElement.classList.remove('form__input-error_active');
+  inputElement.classList.remove(params.inputErrorClass);
+  errorElement.classList.remove(params.errorClass);
   errorElement.textContent = '';
 }
 
-const isValid = function (formElement, inputElement) {
+const isValid = function (formElement, inputElement, params) {
   if(!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, params);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, params);
   }
 }
 
@@ -26,44 +26,52 @@ const hasInvalidInput = function (inputList) {
   });
 }
 
-const toggleButtonState = function (inputList, buttonElement) {
+const toggleButtonState = function (inputList, buttonElement, params) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add('form__button_inactive');
+    buttonElement.classList.add(params.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', '');
   } else {
-    buttonElement.classList.remove('form__button_inactive');
+    buttonElement.classList.remove(params.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   };
 }
 
-const setEventListener = function (formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__button');
+const setEventListener = function (formElement, params) {
+  const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
+  const buttonElement = formElement.querySelector(params.buttonSelector);
 
   inputList.forEach(function (inputElement) {
     inputElement.addEventListener('input', function () {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      isValid(formElement, inputElement, params);
+      toggleButtonState(inputList, buttonElement, params);
     });
   });
 }
 
-const clearValidate = function (formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__button');
+const formParameters = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  buttonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+const clearValidate = function (formElement, params) {
+  const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
+  const buttonElement = formElement.querySelector(params.buttonSelector);
   
   inputList.forEach(function (inputElement) {
-    hideInputError(formElement, inputElement);
-    toggleButtonState(inputList, buttonElement);
+    hideInputError(formElement, inputElement, params);
+    toggleButtonState(inputList, buttonElement, params);
   });
 }
 
 const enableValidation = function (params) {
-  const formList = Array.from(document.querySelectorAll('.form'));
+  const formList = Array.from(document.querySelectorAll(params.formSelector));
   formList.forEach(function(formElement) {
-    setEventListener(formElement);
+    setEventListener(formElement, params);
   });
 }
 
-enableValidation({
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-});
+enableValidation(formParameters);

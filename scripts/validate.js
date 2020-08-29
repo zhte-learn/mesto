@@ -1,3 +1,4 @@
+//функция вывода сообщения об ошибке
 const showInputError = function (formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(params.inputErrorClass);
@@ -5,6 +6,7 @@ const showInputError = function (formElement, inputElement, errorMessage, params
   errorElement.classList.add(params.errorClass);
 };
 
+//функция сокрытия сообщения об ошибке
 const hideInputError = function(formElement, inputElement, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(params.inputErrorClass);
@@ -12,6 +14,7 @@ const hideInputError = function(formElement, inputElement, params) {
   errorElement.textContent = '';
 }
 
+//функции проверки формы на валидность
 const isValid = function (formElement, inputElement, params) {
   if(!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, params);
@@ -26,6 +29,7 @@ const hasInvalidInput = function (inputList) {
   });
 }
 
+//функция изменения состояния кнопки
 const toggleButtonState = function (inputList, buttonElement, params) {
   if(hasInvalidInput(inputList)) {
     buttonElement.classList.add(params.inactiveButtonClass);
@@ -36,6 +40,7 @@ const toggleButtonState = function (inputList, buttonElement, params) {
   };
 }
 
+//установка слушателей
 const setEventListener = function (formElement, params) {
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   const buttonElement = formElement.querySelector(params.buttonSelector);
@@ -57,6 +62,7 @@ const formParameters = {
   errorClass: 'form__input-error_active'
 }
 
+//функция сброса результатов проверки на валидность
 const clearValidate = function (formElement, params) {
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   const buttonElement = formElement.querySelector(params.buttonSelector);

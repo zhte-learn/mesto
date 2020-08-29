@@ -1,8 +1,8 @@
 //открытие попапа Edit
 const popups = document.querySelectorAll('.popup');
+
 const buttonEdit = document.querySelector('.button_action_edit');
 const popupEdit = document.querySelector('.popup_edit');
-
 const formEdit = popupEdit.querySelector('.form_edit');
 const currentPageName = document.querySelector('.profile__name');
 const currentPageJob = document.querySelector('.profile__job');
@@ -34,7 +34,6 @@ const keyboardListenter = function (event) {
 
 const popupClickListener = function (event) {
   const target = event.target;
-
   if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
     const popup = target.closest('.popup');
     closePopup(popup);
@@ -45,9 +44,10 @@ const openPopup = function(popup) {
   const popupForm = popup.querySelector('.form');
   popup.classList.add('popup_opened');
 
-  if(popupForm === popupEdit || popupForm === popupAdd) {
+  if(popupForm !== null) {
     clearValidate(popupForm, formParameters);
   }
+  
   document.addEventListener('click', popupClickListener);
   window.addEventListener('keydown', keyboardListenter);
 }
@@ -121,7 +121,7 @@ const createCard = function(item) {
     itemToRemove.remove();
   });
   
-  cardElement.querySelector('.cards-grid__image').addEventListener('click', function(event) {
+  cardImage.addEventListener('click', function(event) {
     popupPicImage.src = item.link;
     popupPicImage.alt = 'Изображение места';
     popupPicCaption.textContent = item.name;    

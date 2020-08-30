@@ -1,6 +1,4 @@
 //открытие попапа Edit
-const popups = document.querySelectorAll('.popup');
-
 const buttonEdit = document.querySelector('.button_action_edit');
 const popupEdit = document.querySelector('.popup_edit');
 const formEdit = popupEdit.querySelector('.form_edit');
@@ -38,13 +36,7 @@ const handlePopupOverlay = function (event) {
 }
 
 const openPopup = function(popup) {
-  const popupForm = popup.querySelector('.form');
   popup.classList.add('popup_opened');
-
-  if(popupForm !== null) {
-    clearValidate(popupForm, formParameters);
-  }
-  
   document.addEventListener('click', handlePopupOverlay);
   window.addEventListener('keydown', handleKeyEsc);
 }
@@ -61,6 +53,7 @@ const openPopupEdit = function(event) {
     inputValueJob.value = currentPageJob.textContent;
   }
   openPopup(popupEdit);
+  clearValidate(popupEdit, formParameters);
 }
 
 const openPopupAdd = function(event) {
@@ -69,6 +62,7 @@ const openPopupAdd = function(event) {
     inputValueLink.value = '';
   }
   openPopup(popupAdd);
+  clearValidate(popupAdd, formParameters);
 }
 
 buttonEdit.addEventListener('click', openPopupEdit);

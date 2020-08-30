@@ -22,7 +22,7 @@ const popupPicCaption = popupPic.querySelector('.figure-pic__figcaption');
 const cardsContainer = document.querySelector('.cards-grid__list');
 
 //открытие и закрытие popups
-const keyboardListenter = function (event) {
+const handleKeyEsc = function (event) {
   if(event.key === 'Escape') {
     popups.forEach(function(popup) {
       if(popup.classList.contains('popup_opened')) {
@@ -32,7 +32,7 @@ const keyboardListenter = function (event) {
   };
 }
 
-const popupClickListener = function (event) {
+const handlePopupOverlay = function (event) {
   const target = event.target;
   if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
     const popup = target.closest('.popup');
@@ -48,14 +48,14 @@ const openPopup = function(popup) {
     clearValidate(popupForm, formParameters);
   }
   
-  document.addEventListener('click', popupClickListener);
-  window.addEventListener('keydown', keyboardListenter);
+  document.addEventListener('click', handlePopupOverlay);
+  window.addEventListener('keydown', handleKeyEsc);
 }
 
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('click', popupClickListener);
-  window.removeEventListener('keydown', keyboardListenter);
+  document.removeEventListener('click', handlePopupOverlay);
+  window.removeEventListener('keydown', handleKeyEsc);
 }
 
 const openPopupEdit = function(event) {

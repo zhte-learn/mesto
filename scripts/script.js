@@ -24,12 +24,9 @@ const cardsContainer = document.querySelector('.cards-grid__list');
 //открытие и закрытие popups
 const handleKeyEsc = function (event) {
   if(event.key === 'Escape') {
-    popups.forEach(function(popup) {
-      if(popup.classList.contains('popup_opened')) {
-        closePopup(popup);
-      };
-    });   
-  };
+    const popupToClose = document.querySelector('.popup_opened');
+    closePopup(popupToClose);
+  }
 }
 
 const handlePopupOverlay = function (event) {

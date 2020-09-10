@@ -1,4 +1,3 @@
-//открытие попапа Edit
 const buttonEdit = document.querySelector('.button_action_edit');
 const popupEdit = document.querySelector('.popup_edit');
 const formEdit = popupEdit.querySelector('.form_edit');

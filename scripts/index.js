@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const initialCards = [
   {
@@ -41,15 +42,11 @@ const formAdd = popupAdd.querySelector('.form_add');
 const inputValuePlace = formAdd.querySelector('.form__input_text_place');
 const inputValueLink = formAdd.querySelector('.form__input_text_link');
 
-const cardsContainer = document.querySelector('.cards-grid__list');
+const popupPic = document.querySelector('.popup_pic');
+const popupImage = popupPic.querySelector('.figure-pic__image');
+const popupTitle = popupPic.querySelector('.figure-pic__figcaption');
 
-//добавление карточек в DOM
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  //console.log('карточки добавились')
-  document.querySelector('.cards-grid__list').prepend(cardElement);
-})
+const cardsContainer = document.querySelector('.cards-grid__list');
 
 //открытие и закрытие popups
 const handleKeyEsc = function (event) {
@@ -74,7 +71,6 @@ const openPopup = function(popup) {
 }
 
 const closePopup = function(popup) {
-  console.log('ttt')
   popup.classList.remove('popup_opened');
   document.removeEventListener('click', handlePopupOverlay);
   window.removeEventListener('keydown', handleKeyEsc);
@@ -86,7 +82,7 @@ const openPopupEdit = function(event) {
     inputValueJob.value = currentPageJob.textContent;
   }
   openPopup(popupEdit);
-  //clearValidate(popupEdit, formParameters);
+  editFormValidator.enableValidation();
 }
 
 const openPopupAdd = function(event) {
@@ -95,8 +91,63 @@ const openPopupAdd = function(event) {
     inputValueLink.value = '';
   }
   openPopup(popupAdd);
-  //clearValidate(popupAdd, formParameters);
+  addFormValidator.enableValidation();
+}
+
+const openPopupPic = function (name, link) {
+  popupImage.src = link;
+  popupImage.alt = 'Изображение места';
+  popupTitle.textContent = name;    
+  openPopup(popupPic);
 }
 
 buttonEdit.addEventListener('click', openPopupEdit);
 buttonAdd.addEventListener('click', openPopupAdd);
+
+//обработка формы редактирования
+const formEditSubmitHandler = function(event) {
+  event.preventDefault(); 
+  
+  currentPageName.textContent = inputValueName.value;
+  currentPageJob.textContent = inputValueJob.value;
+
+  closePopup(popupEdit);
+}
+
+//добавление карточек
+const addCardToPage = function(card) {
+  cardsContainer.prepend(card);
+}
+
+const formAddSubmitHandler = function(event) {
+  event.preventDefault();
+
+  const card = new Card(inputValuePlace.value, inputValueLink.value, openPopupPic, '#card');
+  const cardElement = card.generateCard();
+
+  addCardToPage(cardElement);
+  closePopup(popupAdd);
+}
+
+formEdit.addEventListener('submit', formEditSubmitHandler);
+formAdd.addEventListener('submit', formAddSubmitHandler);
+
+
+//добавление массива карточек в DOM
+initialCards.forEach((item) => {
+  const card = new Card(item.name, item.link, openPopupPic, '#card');  
+  const cardElement = card.generateCard();
+  addCardToPage(cardElement);
+})
+
+const formParameters = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  buttonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+const addFormValidator = new FormValidator(formParameters, formAdd);
+const editFormValidator = new FormValidator(formParameters, formEdit);

@@ -76,27 +76,25 @@ const closePopup = function(popup) {
   window.removeEventListener('keydown', handleKeyEsc);
 }
 
-const openPopupEdit = function(event) {
+const openPopupEdit = function() {
   if(!popupEdit.classList.contains('popup_opened')) {
+    formEdit.reset();
     inputValueName.value = currentPageName.textContent;
     inputValueJob.value = currentPageJob.textContent;
   }
   openPopup(popupEdit);
-  editFormValidator.enableValidation();
 }
 
 const openPopupAdd = function(event) {
-  if(!popupAdd.classList.contains('popup_opened')) {  
-    inputValuePlace.value = '';
-    inputValueLink.value = '';
+  if(!popupAdd.classList.contains('popup_opened')) { 
+    formAdd.reset();
   }
   openPopup(popupAdd);
-  addFormValidator.enableValidation();
 }
 
 const openPopupPic = function (name, link) {
   popupImage.src = link;
-  popupImage.alt = 'Изображение места';
+  popupImage.alt = 'Изображение места ' + name;
   popupTitle.textContent = name;    
   openPopup(popupPic);
 }
@@ -132,7 +130,6 @@ const formAddSubmitHandler = function(event) {
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
-
 //добавление массива карточек в DOM
 initialCards.forEach((item) => {
   const card = new Card(item.name, item.link, openPopupPic, '#card');  
@@ -151,3 +148,5 @@ const formParameters = {
 
 const addFormValidator = new FormValidator(formParameters, formAdd);
 const editFormValidator = new FormValidator(formParameters, formEdit);
+addFormValidator.enableValidation();
+editFormValidator.enableValidation();

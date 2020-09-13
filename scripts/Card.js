@@ -26,8 +26,9 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.cards-grid__image').src = this._link;
-    this._element.querySelector('.cards-grid__caption-title').alt = 'Изображение места';
+    const cardImage = this._element.querySelector('.cards-grid__image');
+    cardImage.src = this._link;
+    cardImage.alt = `Изображение места ${this._name}`;
     this._element.querySelector('.cards-grid__caption-title').textContent = this._name;
     this._setEventListeners();
     return this._element;

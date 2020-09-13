@@ -51,6 +51,10 @@ export default class FormValidator {
         this._toggleButtonState();
       })
     })
+
+    this._formElement.addEventListener('reset', () => {
+      this._clearValidate();
+    })
   }
 
   _clearValidate() {
@@ -60,7 +64,6 @@ export default class FormValidator {
   }
 
   enableValidation() { 
-    this._clearValidate();
     this._setEventListeners();
   }
 }

@@ -1,6 +1,8 @@
 export class Popup {
   constructor(popupSelector) {
-    this._popup = popupSelector;
+    this._popup = document.querySelector(popupSelector);
+    this._overlayClose = this._handleOverlayClose.bind(this);
+    this._escClose = this._handleEscClose.bind(this);
   }
 
   close() {
@@ -27,21 +29,13 @@ export class Popup {
   }
 
   setEventListeners() {
-    document.addEventListener('click', (event) => {
-      this._handleOverlayClose(event);
-    });
-    window.addEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.addEventListener('click', this._overlayClose);
+    window.addEventListener('keydown', this._escClose);
   }
 
   removeEventListeners() {
-    document.removeEventListener('click', (event) => {
-      this._handleOverlayClose(event);
-    });
-    window.removeEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.removeEventListener('click', this._overlayClose);
+    window.removeEventListener('keydown', this._escClose);
   }
 }
 
@@ -64,12 +58,33 @@ export class PopupWithImage extends Popup {
 }
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, submitFormFunc) {
+  constructor(popupSelector, handleSubmitForm) {
     super(popupSelector);
-    this._submitForm = submitFormFunc;
+    this._handleSubmitForm = handleSubmitForm;
+    this._form = this._popup.querySelector('.form');
+    this._inputList = this._popup.querySelectorAll('.form__input');
   }
 
   _getInputValues() {
-    
+    this._formValues = {};
+    //this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    this._inputList.forEach(input => this._formValues[input.id] = input.value);
+    //console.log(this._formValues)
+    return this._formValues;
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._form.addEventListener('submit', this._handleSubmitForm);
+  }
+
+  removeEventListeners() {
+    super.removeEventListeners();
+    this._form.removeEventListener('submit', this._handleSubmitForm);
+  }
+
+  close () {
+    super.close();
+    this._form.reset();
   }
 }

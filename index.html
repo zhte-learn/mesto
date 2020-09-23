@@ -53,11 +53,11 @@
         <form class="form form_edit" method="POST" name="editForm" novalidate>            
           <h3 class="form__title">Редактировать профиль</h3>
           
-          <input id="name-input" type="text" class="form__input form__input_text_name" 
+          <input id="name-input" name = "name" type="text" class="form__input form__input_text_name" 
             placeholder="Имя" minlength="2" maxlength="40" required>
           <span id="name-input-error" class="form__input-error"></span>
 
-          <input id="job-input" type="text" class="form__input form__input_text_job" 
+          <input id="job-input" name = "job" type="text" class="form__input form__input_text_job" 
             placeholder="Род деятельности"minlength="2" maxlength="200" required>
           <span id="job-input-error" class="form__input-error"></span>
 
@@ -73,11 +73,11 @@
         <form class="form form_add" method="POST" name="addForm" novalidate>            
           <h3 class="form__title">Новое место</h3>
 
-          <input id="place-input" type="text" class="form__input form__input_text_place" 
+          <input id="place-input" name = "place" type="text" class="form__input form__input_text_place" 
             placeholder="Название" minlength="1" maxlength="30" required>
           <span id="place-input-error" class="form__input-error"></span>
 
-          <input id="url-input" type="url" class="form__input form__input_text_link" 
+          <input id="url-input" name = "link" type="url" class="form__input form__input_text_link" 
             placeholder="Ссылка на картинку" required>
           <span id="url-input-error" class="form__input-error"></span>
 

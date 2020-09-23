@@ -1,7 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
-import {Popup, PopupWithImage} from './Popup.js';
+import {Popup, PopupWithForm, PopupWithImage} from './Popup.js';
 
 const initialCards = [
   {
@@ -31,20 +31,20 @@ const initialCards = [
 ];
 
 const buttonEdit = document.querySelector('.button_action_edit');
-const popupEdit = document.querySelector('.popup_edit');
-const formEdit = popupEdit.querySelector('.form_edit');
+//const popupEdit = document.querySelector('.popup_edit');
+const formEdit = document.querySelector('.form_edit');
 const currentPageName = document.querySelector('.profile__name');
 const currentPageJob = document.querySelector('.profile__job');
 const inputValueName = formEdit.querySelector('.form__input_text_name');
 const inputValueJob = formEdit.querySelector('.form__input_text_job');
 
 const buttonAdd = document.querySelector('.button_action_add');
-const popupAdd = document.querySelector('.popup_add');
-const formAdd = popupAdd.querySelector('.form_add');
+//const popupAdd = document.querySelector('.popup_add');
+const formAdd = document.querySelector('.form_add');
 const inputValuePlace = formAdd.querySelector('.form__input_text_place');
 const inputValueLink = formAdd.querySelector('.form__input_text_link');
 
-const popupPic = document.querySelector('.popup_pic');
+//const popupPic = document.querySelector('.popup_pic');
 
 const cardsContainer = document.querySelector('.cards-grid__list');
 
@@ -62,7 +62,7 @@ const closePopup = function(popup) {
   window.removeEventListener('keydown', handleKeyEsc);
 } */
 
-const openPopupEdit = function() {
+/* const openPopupEdit = function() {
   if(!popupEdit.classList.contains('popup_opened')) {
     formEdit.reset();
     inputValueName.value = currentPageName.textContent;
@@ -76,7 +76,7 @@ const openPopupAdd = function(event) {
     formAdd.reset();
   }
   openPopup(popupAdd);
-}
+} */
 
 /* const openPopupPic = function (name, link) {
   popupImage.src = link;
@@ -85,16 +85,14 @@ const openPopupAdd = function(event) {
   openPopup(popupPic);
 } */
 
-buttonEdit.addEventListener('click', openPopupEdit);
-buttonAdd.addEventListener('click', openPopupAdd);
 
 
 const handleCardClick = function (name, link) {
-  const popupWithImage = new PopupWithImage(popupPic, name, link);
+  const popupWithImage = new PopupWithImage('.popup_pic', name, link);
   popupWithImage.open();
 }
 
-//добавление карточек (изменить openPopupPic!!!!)
+//добавление карточек
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -113,21 +111,18 @@ const formEditSubmitHandler = function(event) {
   currentPageName.textContent = inputValueName.value;
   currentPageJob.textContent = inputValueJob.value;
 
-  closePopup(popupEdit);
+  popupEdit.close();
 }
 
 const formAddSubmitHandler = function(event) {
   event.preventDefault();
 
-  const card = new Card(inputValuePlace.value, inputValueLink.value, openPopupPic, '#card');
+  const card = new Card(inputValuePlace.value, inputValueLink.value, handleCardClick, '#card');
   const cardElement = card.generateCard();
-
+ 
   cardList.addItem(cardElement);
-  closePopup(popupAdd);
+  popupAdd.close();
 }
-
-formEdit.addEventListener('submit', formEditSubmitHandler);
-formAdd.addEventListener('submit', formAddSubmitHandler);
 
 const formParameters = {
   formSelector: '.form',
@@ -142,3 +137,15 @@ const addFormValidator = new FormValidator(formParameters, formAdd);
 const editFormValidator = new FormValidator(formParameters, formEdit);
 addFormValidator.enableValidation();
 editFormValidator.enableValidation();
+
+
+const popupAdd = new PopupWithForm ('.popup_add', formAddSubmitHandler);
+const popupEdit = new PopupWithForm('.popup_edit', formEditSubmitHandler);
+
+buttonAdd.addEventListener('click', () => {
+  popupAdd.open();
+});
+
+buttonEdit.addEventListener('click', () => {
+  popupEdit.open();
+})

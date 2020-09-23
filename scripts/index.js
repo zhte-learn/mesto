@@ -1,5 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import {Popup, PopupWithImage} from './Popup.js';
 
 const initialCards = [
   {
@@ -43,28 +45,12 @@ const inputValuePlace = formAdd.querySelector('.form__input_text_place');
 const inputValueLink = formAdd.querySelector('.form__input_text_link');
 
 const popupPic = document.querySelector('.popup_pic');
-const popupImage = popupPic.querySelector('.figure-pic__image');
-const popupTitle = popupPic.querySelector('.figure-pic__figcaption');
 
 const cardsContainer = document.querySelector('.cards-grid__list');
 
 //открытие и закрытие popups
-const handleKeyEsc = function (event) {
-  if(event.key === 'Escape') {
-    const popupToClose = document.querySelector('.popup_opened');
-    closePopup(popupToClose);
-  }
-}
 
-const handlePopupOverlay = function (event) {
-  const target = event.target;
-  if(target.classList.contains('popup__close') || target.classList.contains('popup')) {    
-    const popup = target.closest('.popup');
-    closePopup(popup);
-  }
-}
-
-const openPopup = function(popup) {
+/* const openPopup = function(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('click', handlePopupOverlay);
   window.addEventListener('keydown', handleKeyEsc);
@@ -74,7 +60,7 @@ const closePopup = function(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('click', handlePopupOverlay);
   window.removeEventListener('keydown', handleKeyEsc);
-}
+} */
 
 const openPopupEdit = function() {
   if(!popupEdit.classList.contains('popup_opened')) {
@@ -92,17 +78,35 @@ const openPopupAdd = function(event) {
   openPopup(popupAdd);
 }
 
-const openPopupPic = function (name, link) {
+/* const openPopupPic = function (name, link) {
   popupImage.src = link;
   popupImage.alt = 'Изображение места ' + name;
   popupTitle.textContent = name;    
   openPopup(popupPic);
-}
+} */
 
 buttonEdit.addEventListener('click', openPopupEdit);
 buttonAdd.addEventListener('click', openPopupAdd);
 
-//обработка формы редактирования
+
+const handleCardClick = function (name, link) {
+  const popupWithImage = new PopupWithImage(popupPic, name, link);
+  popupWithImage.open();
+}
+
+//добавление карточек (изменить openPopupPic!!!!)
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, handleCardClick, '#card');  
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+}, cardsContainer);
+
+cardList.renderItems();
+
+//обработка форм
 const formEditSubmitHandler = function(event) {
   event.preventDefault(); 
   
@@ -112,30 +116,18 @@ const formEditSubmitHandler = function(event) {
   closePopup(popupEdit);
 }
 
-//добавление карточек
-const addCardToPage = function(card) {
-  cardsContainer.prepend(card);
-}
-
 const formAddSubmitHandler = function(event) {
   event.preventDefault();
 
   const card = new Card(inputValuePlace.value, inputValueLink.value, openPopupPic, '#card');
   const cardElement = card.generateCard();
 
-  addCardToPage(cardElement);
+  cardList.addItem(cardElement);
   closePopup(popupAdd);
 }
 
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
-
-//добавление массива карточек в DOM
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link, openPopupPic, '#card');  
-  const cardElement = card.generateCard();
-  addCardToPage(cardElement);
-})
 
 const formParameters = {
   formSelector: '.form',

@@ -42,7 +42,7 @@ export default class Card {
       this._like();  
     })
     this._element.querySelector('.cards-grid__image').addEventListener('click', () => {
-      this._showPic();  
+      this._showPic();
     })
   }
 }

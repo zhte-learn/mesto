@@ -67,9 +67,8 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._formValues = {};
-    //this._inputList.forEach(input => this._formValues[input.name] = input.value);
-    this._inputList.forEach(input => this._formValues[input.id] = input.value);
-    //console.log(this._formValues)
+    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    //this._inputList.forEach(input => this._formValues[input.id] = input.value);
     return this._formValues;
   }
 
@@ -83,8 +82,11 @@ export class PopupWithForm extends Popup {
     this._form.removeEventListener('submit', this._handleSubmitForm);
   }
 
-  close () {
+  close() {
     super.close();
+    const inputValues = this._getInputValues();
     this._form.reset();
+
+    return inputValues;
   }
 }

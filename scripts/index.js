@@ -2,6 +2,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import {Popup, PopupWithForm, PopupWithImage} from './Popup.js';
+import UserInfo from './UserInfo.js';
 
 const initialCards = [
   {
@@ -106,12 +107,9 @@ cardList.renderItems();
 
 //обработка форм
 const formEditSubmitHandler = function(event) {
-  event.preventDefault(); 
-  
-  currentPageName.textContent = inputValueName.value;
-  currentPageJob.textContent = inputValueJob.value;
+  event.preventDefault();
 
-  popupEdit.close();
+  userInfo.setUserInfo(popupEdit.close());
 }
 
 const formAddSubmitHandler = function(event) {
@@ -148,4 +146,13 @@ buttonAdd.addEventListener('click', () => {
 
 buttonEdit.addEventListener('click', () => {
   popupEdit.open();
+  const currentUserInfo = userInfo.getUserInfo();
+  inputValueName.value = currentUserInfo.name;
+  inputValueJob.value = currentUserInfo.job;
 })
+
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  job: '.profile__job'
+});
+

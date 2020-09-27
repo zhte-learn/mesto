@@ -1,0 +1,40 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "### Обзор Учебный проект, созданный в рамках обучения на курсе Яндекс Практикум. При создании проекта были реализованы основные принципы адаптивной верстки, grig и flex. Реализовано открытие и закрытие попап окна при помощи javascript. Файловая структура проекта соответствует требованиям БЭМ.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rd /s /q dist && webpack",
+    "build:prod": "npm run build -- --mode production",
+    "dev": "webpack-dev-server --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhte-learn/mesto.git"
+  },
+  "author": "Tatiana Zhelobanova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhte-learn/mesto/issues"
+  },
+  "homepage": "https://github.com/zhte-learn/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "cssnano": "^4.1.10",
+    "file-loader": "^6.1.0",
+    "html-loader": "^1.3.1",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.11.2",
+    "postcss-loader": "^4.0.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5"
+  }
+}

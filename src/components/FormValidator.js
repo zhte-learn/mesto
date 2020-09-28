@@ -61,6 +61,8 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     })
+    this._buttonElement.classList.add(this._formParams.inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', '');
   }
 
   enableValidation() { 

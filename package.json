@@ -4,7 +4,7 @@
   "description": "### Обзор Учебный проект, созданный в рамках обучения на курсе Яндекс Практикум. При создании проекта были реализованы основные принципы адаптивной верстки, grig и flex. Реализовано открытие и закрытие попап окна при помощи javascript. Файловая структура проекта соответствует требованиям БЭМ.",
   "main": "index.js",
   "scripts": {
-    "build": "rd /s /q dist && webpack",
+    "build": "rimraf dist && webpack",
     "build:prod": "npm run build -- --mode production",
     "dev": "webpack-dev-server --open --watch"
   },

@@ -17,7 +17,8 @@ export default class Card {
   }
 
   _remove() { 
-    this._element.remove(); 
+    this._element.remove();
+    this.element = null;
   }
 
   _like() {

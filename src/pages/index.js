@@ -10,14 +10,14 @@ import {
   formAdd,
   cardsContainer,
   formParameters
-} from './utils/constants.js';
+} from '../utils/constants.js';
 
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import Section from './components/Section.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 const creatCard = function (cardData) {
   const card = new Card(cardData.place, cardData.link, handleCardClick, '#card');  
@@ -44,6 +44,7 @@ editFormValidator.enableValidation();
 //обработка открытия и закрытия модальных окон
 const popupAdd = new PopupWithForm ('.popup_add', formAddSubmitHandler);
 const popupEdit = new PopupWithForm('.popup_edit', formEditSubmitHandler);
+const popupWithImage = new PopupWithImage('.popup_pic');
 
 buttonAdd.addEventListener('click', () => {
   popupAdd.open(); 
@@ -58,12 +59,10 @@ buttonEdit.addEventListener('click', () => {
 
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
-
-const popupWithImage = new PopupWithImage('.popup_pic');
+popupWithImage.setEventListeners();
 
 const handleCardClick = function (name, link) {  
-  popupWithImage.open(name, link);
-  popupWithImage.setEventListeners();
+  popupWithImage.open(name, link); 
 }
 
 //добавление карточек

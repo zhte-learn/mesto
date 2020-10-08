@@ -10,7 +10,7 @@
   opacity: .6;
 }
 
-.button:active {
+/* .button:active {
   transform: translateY(1px);
   filter: saturate(150%);
-}
+} */

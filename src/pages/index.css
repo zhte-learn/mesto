@@ -18,6 +18,7 @@
 @import url(../blocks/button/_action/button_action_like.css);
 @import url(../blocks/button/_action/button_action_like_active.css);
 @import url(../blocks/button/_action/button_action_remove.css);
+@import url(../blocks/button/_action/button_action_update-avatar.css);
 @import url(../blocks/cards-grid/cards-grid.css);
 @import url(../blocks/cards-grid/__list/cards-grid__list.css);
 @import url(../blocks/cards-grid/__item/cards-grid__item.css);
@@ -35,10 +36,6 @@
 @import url(../blocks/popup/__container/_type/popup__container_with-form.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/popup/__button/popup__button.css);
-@import url(../blocks/popup/__title/popup__title.css);
-/* @import url(../blocks/form/_type/form_edit.css);
-@import url(../blocks/form/_type/form_add.css); */
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__button/form__button.css);
 @import url(../blocks/form/__button/_action/form__button_inactive.css);

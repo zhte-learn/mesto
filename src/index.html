@@ -45,7 +45,7 @@
 
     <div class="popup popup_edit">
       
-      <div class="popup__container">
+      <div class="popup__container popup__container_with-form">
         <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
 
         <form class="form form_edit" method="POST" name="editForm" novalidate>            
@@ -65,7 +65,7 @@
     </div>
 
     <div class="popup popup_add">
-      <div class="popup__container">
+      <div class="popup__container popup__container_with-form">
         <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
 
         <form class="form form_add" method="POST" name="addForm" novalidate>            
@@ -95,6 +95,15 @@
       </div>                                              
     </div>
 
+    <div class="popup popup_confirm">
+      <div class="popup__container popup__container_with-form">
+        
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>            
+          <h3 class="popup__title form__title">Вы уверены?</h3>
+          <button class="popup__button form__button" type="button">Да</button>
+      </div>                                              
+    </div>
+
   </div><!--page__container-->
 
   <template id="card">
@@ -107,8 +116,10 @@
                                       
         <figcaption class="cards-grid__caption">
           <h2 class="cards-grid__caption-title"></h2>
-          <button class="button button_action_like"
-          type="button" aria-label="Поставить лайк"></button>
+          <div class="cards-grid__like-container">
+            <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+            <span class="cards-grid__likes-counter">2</span>
+          </div>
         </figcaption>
       </figure>  
     </li> 

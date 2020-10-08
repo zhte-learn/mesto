@@ -44,8 +44,7 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_edit">
-      
+    <div class="popup popup_edit">    
       <div class="popup__container popup__container_with-form">
         <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
 
@@ -88,7 +87,6 @@
     <div class="popup popup_pic">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
-
         <figure class="figure-pic">         
           <img class="figure-pic__image" alt="Изображение места">
           <figcaption class="figure-pic__figcaption"></figcaption>
@@ -97,11 +95,23 @@
     </div>
 
     <div class="popup popup_confirm">
-      <div class="popup__container popup__container_with-form">
-        
+      <div class="popup__container popup__container_with-form">     
         <button class="popup__close" type="button" aria-label="Закрыть попап"></button>            
           <h3 class="popup__title form__title">Вы уверены?</h3>
           <button class="popup__button form__button" type="button">Да</button>
+      </div>                                              
+    </div>
+
+    <div class="popup popup_update-avatar">
+      <div class="popup__container popup__container_with-form">       
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <form class="form form_update-avatar" method="POST" name="updateForm" novalidate>          
+          <h3 class="form__title">Обновить аватар</h3>
+          <input id="url-input" name = "link" type="url" class="form__input form__input_text_link" 
+            placeholder="Ссылка на картинку" required>
+          <span id="url-input-error" class="form__input-error"></span>
+          <button class="form__button form__button_inactive" type="submit" disabled>Сохранить</button>
+        </form>  
       </div>                                              
     </div>
 

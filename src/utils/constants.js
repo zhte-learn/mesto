@@ -11,6 +11,9 @@ export const formAdd = document.querySelector('.form_add');
 export const inputValuePlace = formAdd.querySelector('.form__input_text_place');
 export const inputValueLink = formAdd.querySelector('.form__input_text_link');
 
+export const formAvatar = document.querySelector('.form_update-avatar');
+export const buttonUpdateAvatar = document.querySelector('.button_action_update-avatar');
+
 export const cardsContainer = document.querySelector('.cards-grid__list');
 
 export const formParameters = {

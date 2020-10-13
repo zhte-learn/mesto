@@ -4,73 +4,93 @@ export default class Api {
     this._headers = config.headers;
   }
 
+  _handleResult(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject("Произошла ошибка");
+  }
+
   getAllCards() {
-    const promise = fetch(this._url, {
+    return fetch(this._url, {
       method: 'GET',
       headers: this._headers
-    });
-    
-    const secondPromise = promise.then((res) => {
-      return res.json();
-    });
-    
-    return secondPromise;
-  }
-
-  getData() {
-    return fetch(this._url, {
-        headers: this._headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-        return Promise.reject("Произошла ошибка");
+      return this._handleResult(res);
     })
-    .catch((err) => {
-      console.log('Ошибка');
-    });
   }
 
+  getUserData() {
+    return fetch(this._url, {
+      method: 'GET',
+      headers: this._headers
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
+  }
+  
   addNewCard(data) {
     return fetch(this._url, {
         method: "POST",
         headers: this._headers,
         body: JSON.stringify(data),
-    }).then((res) => {
-        if (res.ok) {
-          
-          return res.json();
-        }
-
-        return Promise.reject("Произошла ошибка");
-    });
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
   }
 
-  patchData(data) {
+  updateUserData(data) {
     return fetch(this._url, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
-  }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
-  });
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
   }
 
-  delete(id) {
+  deleteCard(id) {
     return fetch(`${this._url}/${id}`, {
         method: "DELETE",
         headers: this._headers,
-    }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
+  }
 
-        return Promise.reject("Произошла ошибка");
-    });
+  addLike(id) {
+    return fetch(`${this._url}/likes/${id}`, {
+      method: "PUT",
+      headers: this._headers,
+  })
+  .then((res) => {
+    return this._handleResult(res);
+    })
+  }
+
+  deleteLike(id) {
+    return fetch(`${this._url}/likes/${id}`, {
+        method: "DELETE",
+        headers: this._headers,
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
+  }
+
+  updateAvatar(link) {
+    return fetch(`${this._url}/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({avatar: link}),
+    })
+    .then((res) => {
+      return this._handleResult(res);
+    })
   }
 }

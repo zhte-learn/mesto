@@ -83,11 +83,11 @@ export default class Api {
     })
   }
 
-  updateAvatar(link) {
+  updateAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({avatar: link}),
+      body: JSON.stringify(data)
     })
     .then((res) => {
       return this._handleResult(res);

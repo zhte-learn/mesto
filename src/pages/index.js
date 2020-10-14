@@ -34,7 +34,8 @@ const cardList = new Section({
 
 const userInfo = new UserInfo({
   name: '.profile__name',
-  about: '.profile__job'
+  about: '.profile__job',
+  avatar: '.profile__image'
 })
 
 const creatCard = function (cardData) { 
@@ -56,10 +57,11 @@ const formEditSubmitHandler = function(userData) {
   api.updateUserData(userData)
     .then((newUserData) => {
       userInfo.setUserInfo(newUserData);
+      popupEdit.close();
     })
     .catch((error) => alert(error))
     .finally(() => {
-      popupEdit.close();
+      popupEdit.renderLoading(false);
     })  
 }
 
@@ -67,21 +69,23 @@ const formAddSubmitHandler = function(cardData) {
   api.addNewCard(cardData)
   .then((newCardData) => {
     creatCard(newCardData);
+    popupAdd.close();
   })
   .catch((error) => alert(error))
   .finally(() => {
-    popupAdd.close();
+    popupAdd.renderLoading(false);
   })
 }
 
-const formAvatarSubmitHandler = function(cardData) {
-  api.updateAvatar(cardData.link)
+const formAvatarSubmitHandler = function(formData) {
+  api.updateAvatar(formData)
   .then((res) => {
-    profileImage.src = res.avatar;
+    userInfo.setUserInfo(res);
+    popupAvatar.close();
   })
   .catch((error) => alert(error))
   .finally(() => {
-    popupAvatar.close();
+    popupAvatar.renderLoading(false);
   })
 }
 
@@ -89,11 +93,9 @@ const confirmSubmitHandler = function(card) {
   api.deleteCard(card.getCardId())
   .then(() => {
     card.remove();
-  })
-  .catch((error) => alert(error))
-  .finally(() => {
     popupCofirmRemove.close();
   })
+  .catch((error) => alert(error))
 }
 
 //добавление и удаление лайков
@@ -175,10 +177,7 @@ const promises = [initialCards, initialUserInfo];
 Promise.all(promises)
   .then((arrays) => {
     myId = arrays[1]._id;
-    userInfo.setUserInfo(arrays[1])
-    profileImage.src = arrays[1].avatar; 
-    profileImage.alt = `Изображение ${arrays[1].name}`;
-    
+    userInfo.setUserInfo(arrays[1]);
     arrays[0].forEach((card) => {
       creatCard(card);
     })  

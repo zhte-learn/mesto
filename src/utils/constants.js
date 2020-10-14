@@ -16,6 +16,8 @@ export const buttonUpdateAvatar = document.querySelector('.button_action_update-
 
 export const cardsContainer = document.querySelector('.cards-grid__list');
 
+export const profileImage = document.querySelector('.profile__image');
+
 export const formParameters = {
   formSelector: '.form',
   inputSelector: '.form__input',

@@ -10,7 +10,8 @@ import {
   cardsContainer,
   formParameters,
   formAvatar,
-  buttonUpdateAvatar
+  buttonUpdateAvatar,
+  profileImage
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -46,51 +47,46 @@ const creatCard = function (cardData) {
     '#card',
     myId
   );
-
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
 
 //обработка submit форм
 const formEditSubmitHandler = function(userData) {
-  console.log(popupEdit)
-  apiUserInfo.updateUserData(userData)
+  api.updateUserData(userData)
     .then((newUserData) => {
       userInfo.setUserInfo(newUserData);
     })
     .catch((error) => alert(error))
     .finally(() => {
-      popupEdit.renderLoading(false);
       popupEdit.close();
     })  
 }
 
 const formAddSubmitHandler = function(cardData) {
-  apiCards.addNewCard(cardData)
+  api.addNewCard(cardData)
   .then((newCardData) => {
     creatCard(newCardData);
   })
   .catch((error) => alert(error))
   .finally(() => {
-    popupAdd.renderLoading(false);
     popupAdd.close();
   })
 }
 
 const formAvatarSubmitHandler = function(cardData) {
-  apiUserInfo.updateAvatar(cardData.link)
+  api.updateAvatar(cardData.link)
   .then((res) => {
-    document.querySelector('.profile__image').src = res.avatar;
+    profileImage.src = res.avatar;
   })
   .catch((error) => alert(error))
   .finally(() => {
-    popupAvatar.renderLoading(false);
     popupAvatar.close();
   })
 }
 
 const confirmSubmitHandler = function(card) {
-  apiCards.deleteCard(card.getCardId())
+  api.deleteCard(card.getCardId())
   .then(() => {
     card.remove();
   })
@@ -102,17 +98,19 @@ const confirmSubmitHandler = function(card) {
 
 //добавление и удаление лайков
 const handleAddLikes = function(card) {
-  apiCards.addLike(card.getCardId())
+  api.addLike(card.getCardId())
   .then((cardData) => {
     card.countLikes(cardData.likes);
   })
+  .catch((error) => alert(error))
 }
 
 const handleRemoveLikes = function(card) {
-  apiCards.deleteLike(card.getCardId())
+  api.deleteLike(card.getCardId())
   .then((cardData) => {
     card.countLikes(cardData.likes);
   })
+  .catch((error) => alert(error))
 }
 
 const addFormValidator = new FormValidator(formParameters, formAdd);
@@ -158,40 +156,31 @@ const handleClickOnCard = function (name, link) {
 
 //открытие попап подтверждения удаления карточки
 const handleConfirmRemove = function(card) {
-  console.log(card)
   popupCofirmRemove.open(card);
 }
 
 //первоначальная отрисовка сайта
-const apiCards = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-16/cards',
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-16',
   headers: {
     authorization: 'b4605774-7fae-4421-b02f-0fbc9c4ca1bb',
     'content-type': 'application/json'
   }
 });
 
-const apiUserInfo = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-16/users/me',
-  headers: {
-    authorization: 'b4605774-7fae-4421-b02f-0fbc9c4ca1bb',
-    'content-type': 'application/json'
-  },
-});
-
-const initialCards = apiCards.getAllCards();
-const initialUserInfo = apiUserInfo.getUserData();
+const initialCards = api.getAllCards();
+const initialUserInfo = api.getUserData();
 const promises = [initialCards, initialUserInfo];
 
 Promise.all(promises)
   .then((arrays) => {
     myId = arrays[1]._id;
     userInfo.setUserInfo(arrays[1])
-    document.querySelector('.profile__image').src = arrays[1].avatar; 
-    document.querySelector('.profile__image').alt = `Изображение ${arrays[1].name}`;
+    profileImage.src = arrays[1].avatar; 
+    profileImage.alt = `Изображение ${arrays[1].name}`;
     
     arrays[0].forEach((card) => {
       creatCard(card);
-    });
-  })
+    })  
+  })  
   .catch((error) => alert(error));

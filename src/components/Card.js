@@ -38,8 +38,6 @@ export default class Card {
   }
 
   _likeToggle() {
-    //почему я не могу в других методах пользоваться this._buttonLike
-    this._buttonLike = this._element.querySelector('.button_action_like');
     this._buttonLike.classList.toggle('button_action_like_active');
     
     if(this._buttonLike.classList.contains('button_action_like_active')) {
@@ -55,18 +53,20 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    const cardImage = this._element.querySelector('.cards-grid__image');
-    cardImage.src = this._link;
-    cardImage.alt = `Изображение места ${this._name}`;
+    this._cardImage = this._element.querySelector('.cards-grid__image');
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `Изображение места ${this._name}`;
+    this._buttonLike = this._element.querySelector('.button_action_like');
+    this._buttonRemove = this._element.querySelector('.button_action_remove');
 
     if(this._ownerId === this._myId) {
-      this._element.querySelector('.button_action_remove').classList.add('button_action_remove_active');
+      this._buttonRemove.classList.add('button_action_remove_active');
     }
 
     if(this._likes.some((item) => {
       return item._id === this._myId;
       })) {
-        this._element.querySelector('.button_action_like').classList.add('button_action_like_active');
+        this._buttonLike.classList.add('button_action_like_active');
       }
 
     this._element.querySelector('.cards-grid__caption-title').textContent = this._name;
@@ -77,14 +77,14 @@ export default class Card {
 
   _setEventListeners() {
     if(this._ownerId === this._myId) {
-      this._element.querySelector('.button_action_remove').addEventListener('click', () => {
+      this._buttonRemove.addEventListener('click', () => {
         this._showConfirmMessage();
       })
     }
-    this._element.querySelector('.button_action_like').addEventListener('click', () => {
+    this._buttonLike.addEventListener('click', () => {
       this._likeToggle();  
     })
-    this._element.querySelector('.cards-grid__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._showPopupWithPic();
     })
   }

@@ -1,7 +1,7 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleSubmitForm, loadingHandler) {
+  constructor(popupSelector, handleSubmitForm) {
     super(popupSelector);
     this._handleSubmitForm = handleSubmitForm;
     this._form = this._popup.querySelector('.form');
@@ -14,7 +14,7 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  renderLoading(isLoading) {
+  _renderLoading(isLoading) {
     if(isLoading) {
       this._form.querySelector('.form__button').textContent = 'Сохранение...';
     } else {
@@ -27,9 +27,7 @@ export default class PopupWithForm extends Popup {
 
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-
-      this.renderLoading(true);
-
+      this._renderLoading(true);
       this._handleSubmitForm(this._getInputValues());
     })
   }
@@ -37,5 +35,6 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+    this._renderLoading(false);
   }
 }

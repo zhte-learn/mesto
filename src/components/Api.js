@@ -12,7 +12,7 @@ export default class Api {
   }
 
   getAllCards() {
-    return fetch(this._url, {
+    return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers
     })
@@ -22,7 +22,7 @@ export default class Api {
   }
 
   getUserData() {
-    return fetch(this._url, {
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers
     })
@@ -32,7 +32,7 @@ export default class Api {
   }
   
   addNewCard(data) {
-    return fetch(this._url, {
+    return fetch(`${this._url}/cards`, {
         method: "POST",
         headers: this._headers,
         body: JSON.stringify(data),
@@ -43,7 +43,7 @@ export default class Api {
   }
 
   updateUserData(data) {
-    return fetch(this._url, {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
@@ -54,7 +54,7 @@ export default class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}/${id}`, {
+    return fetch(`${this._url}/cards/${id}`, {
         method: "DELETE",
         headers: this._headers,
     })
@@ -64,17 +64,17 @@ export default class Api {
   }
 
   addLike(id) {
-    return fetch(`${this._url}/likes/${id}`, {
+    return fetch(`${this._url}/cards/likes/${id}`, {
       method: "PUT",
       headers: this._headers,
-  })
-  .then((res) => {
-    return this._handleResult(res);
+    })
+    .then((res) => {
+      return this._handleResult(res);
     })
   }
 
   deleteLike(id) {
-    return fetch(`${this._url}/likes/${id}`, {
+    return fetch(`${this._url}/cards/likes/${id}`, {
         method: "DELETE",
         headers: this._headers,
     })
@@ -84,7 +84,7 @@ export default class Api {
   }
 
   updateAvatar(link) {
-    return fetch(`${this._url}/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({avatar: link}),

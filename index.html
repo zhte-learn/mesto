@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сайт о путешествиях Mesto</title>
+<link href="main.css" rel="stylesheet"></head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__container">
+      <a class="header__link" href="#">
+        <img class="logo" src="./images/logo.svg" alt="Логотип Mesto">
+      </a>
+    </div>
+  </header>
+
+  <div class="page__container">
+    <main class="content">
+      <section class="profile">
+        <div class="profile__content"> 
+          <div class="profile__avatar-container">  
+            <image class="profile__image" src="" alt=""></image>
+            <button class="button button_action_update-avatar"></button>
+          </div>
+          <div class="profile__info">                       
+            <h1 class="profile__name"></h1>
+            <!--это не h1 по смыслу, но использование скрытых элементов не допускается-->
+            <button class="button button_action_edit" type="button" 
+              aria-label="Открыть форму редактирования"></button>                      
+            <p class="profile__job"></p>
+          </div>
+        </div>
+
+        <button class="button button_action_add" type="button" aria-label="Добавить информацию"></button>
+      </section>
+
+      <section class="cards-grid">
+        <ul class="cards-grid__list">
+        </ul>
+      </section>      
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup popup_edit">    
+      <div class="popup__container popup__container_with-form">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+
+        <form class="form form_edit" method="POST" name="editForm" novalidate>            
+          <h3 class="form__title">Редактировать профиль</h3>
+          
+          <input id="name-input" name = "name" type="text" class="form__input form__input_text_name" 
+            placeholder="Имя" minlength="2" maxlength="40" required>
+          <span id="name-input-error" class="form__input-error"></span>
+
+          <input id="about-input" name = "about" type="text" class="form__input form__input_text_job" 
+            placeholder="Род деятельности"minlength="2" maxlength="200" required>
+          <span id="about-input-error" class="form__input-error"></span>
+
+          <button class="form__button form__button_inactive" type="submit" disabled>Сохранить</button>                       
+        </form>   
+      </div>                                              
+    </div>
+
+    <div class="popup popup_add">
+      <div class="popup__container popup__container_with-form">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+
+        <form class="form form_add" method="POST" name="addForm" novalidate>            
+          <h3 class="form__title">Новое место</h3>
+
+          <input id="name-input" name = "name" type="text" class="form__input form__input_text_place" 
+            placeholder="Название" minlength="1" maxlength="30" required>
+          <span id="name-input-error" class="form__input-error"></span>
+
+          <input id="url-input" name = "link" type="url" class="form__input form__input_text_link" 
+            placeholder="Ссылка на картинку" required>
+          <span id="url-input-error" class="form__input-error"></span>
+
+          <button class="form__button form__button_inactive" type="submit" disabled>Создать</button>                       
+        </form>   
+      </div>                                              
+    </div>
+
+    <div class="popup popup_pic">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <figure class="figure-pic">         
+          <img class="figure-pic__image" alt="Изображение места">
+          <figcaption class="figure-pic__figcaption"></figcaption>
+        </figure>
+      </div>                                              
+    </div>
+
+    <div class="popup popup_confirm">
+      <div class="popup__container popup__container_with-form">     
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>            
+          <h3 class="popup__title form__title">Вы уверены?</h3>
+          <button class="popup__button form__button" type="button">Да</button>
+      </div>                                              
+    </div>
+
+    <div class="popup popup_update-avatar">
+      <div class="popup__container popup__container_with-form">       
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <form class="form form_update-avatar" method="POST" name="updateForm" novalidate>          
+          <h3 class="form__title">Обновить аватар</h3>
+          <input id="url-input" name = "avatar" type="url" class="form__input form__input_text_link" 
+            placeholder="Ссылка на картинку" required>
+          <span id="url-input-error" class="form__input-error"></span>
+          <button class="form__button form__button_inactive" type="submit" disabled>Сохранить</button>
+          <!-- <button class="form__button" type="button" disabled>Сохранить...</button> -->
+        </form>  
+      </div>                                              
+    </div>
+
+  </div><!--page__container-->
+
+  <template id="card">
+    <li class="cards-grid__item">
+      <button class="button button_action_remove" type="button" aria-label="Удалить карточку"></button>
+      <figure class="cards-grid__figure">             
+        <div class="cards-grid__image-wrapper">
+          <img class="cards-grid__image" alt="Изображение достопримечательности">
+        </div>
+                                      
+        <figcaption class="cards-grid__caption">
+          <h2 class="cards-grid__caption-title"></h2>
+          <div class="cards-grid__like-container">
+            <button class="button button_action_like" type="button" aria-label="Поставить лайк"></button>
+            <span class="cards-grid__likes-counter"></span>
+          </div>
+        </figcaption>
+      </figure>  
+    </li> 
+  </template>
+<script src="main.js"></script></body>

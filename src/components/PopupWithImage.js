@@ -1,5 +1,6 @@
 import Popup from './Popup.js';
 
+//неправильно импортировать! Надо искать в конструкторе по селектору
 import {popupImage, popupTitle} from '../utils/constants.js';
 
 export default class PopupWithImage extends Popup {
@@ -9,7 +10,7 @@ export default class PopupWithImage extends Popup {
 
   open(name, link) {
     super.open();
-    
+    //искать заголовок и картинку здесь!
     popupImage.src = link;
     popupImage.alt = 'Изображение места ' + name;
     popupTitle.textContent = name;

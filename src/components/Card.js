@@ -63,7 +63,6 @@ export default class Card {
       this._buttonRemove.classList.add('button_action_remove_active');
     }
 
-    //не понимаю этот кусок
     if(this._likes.some((item) => {
       return item._id === this._myId;
       })) {
